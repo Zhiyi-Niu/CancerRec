@@ -71,6 +71,6 @@ python run_cancer_recognition.py
 
 ## 💡 Notes
 
-- The running dataset is stored on Google Drive due to file size limitations
+- The running dataset is stored on Baidu Drive due to file size limitations
 
 - `Fig Source Data` is specially used for paper figure reproduction
