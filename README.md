@@ -22,8 +22,7 @@ CancerRec/
 ```
 
 ## 🎬 Demo Video
-
-[<video src="Supplementary_Video_1.mp4" controls width="300"></video>](https://github.com/user-attachments/assets/bb37f1da-4e99-4d7a-81ac-fd603a4ecaf7)
+[<video src="Supplementary_Video_1.mp4" controls width="500"></video>](https://github.com/user-attachments/assets/bb37f1da-4e99-4d7a-81ac-fd603a4ecaf7)
 
 ## ⚙️ Environment Requirements
 
