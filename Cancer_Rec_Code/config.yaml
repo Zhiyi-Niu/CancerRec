@@ -1,0 +1,109 @@
+project:
+  name: Cancer_Rec_Code
+  seed: 2026
+  device: cuda
+
+data:
+  strict_expected_counts: true
+  expected_counts: {P: 32, Q: 25, S: 24, N: 30, H: 48}
+  expected_time: 512
+  allowed_channels: [12]
+  dataset_root: ./Cancer_Data/Ori-Data
+  full_npz: ./Cancer_Data/Pro-STMap/full/stmaps_full.npz
+
+# Stage 1: train TSB + STB branches to obtain the deep feature.
+training:
+  folds: 5
+  batch_size: 64
+  num_workers: 0
+  pin_memory: true
+  use_amp: true
+  cpu_num_threads: 4
+  grad_clip_norm: 2.0
+  cancer_gate: {epochs: 180, selection_start_epoch: 10, lr: 0.0003, min_lr: 0.000001, warmup_epochs: 5, warmup_start_factor: 0.25, weight_decay: 0.01}
+  cancer_subtype: {epochs: 170, selection_start_epoch: 10, lr: 0.0003, min_lr: 0.000001, warmup_epochs: 5, warmup_start_factor: 0.25, weight_decay: 0.01}
+  augment: {enable: false, gaussian_noise_std: 0.008, amplitude_scale_std: 0.025, time_shift_max: 2}
+
+early_stopping:
+  cancer_gate: {enabled: true, min_epochs: 30, patience: 25, min_delta: 0.002}
+  cancer_subtype: {enabled: true, min_epochs: 30, patience: 30, min_delta: 0.002}
+
+selection:
+  smoothing_window: 5
+  prediction_mode: best_single
+
+model:
+  embed_dim: 48
+  unit_depth: 1
+  unit_heads: 2
+  mlp_ratio: 1.5
+  dropout: 0.10
+  max_unit_id: 16
+  temporal_kernel: 5
+  temporal_dilations: [1, 2, 4, 8]
+  temporal_stem_kernels: [5, 9, 15]
+  texture_dim: 48
+  texture_dropout: 0.10
+  head_hidden_dim: 64
+  cancer_gate_head_dropout: 0.10
+  cancer_subtype_head_dropout: 0.25
+  cancer_gate_unit_attention_mode: learned_prior
+  cancer_gate_unit_attention_temperature: 0.75
+  cancer_subtype_unit_attention_mode: original
+  cancer_subtype_unit_attention_temperature: 1.0
+
+loss:
+  cancer_gate_strategy: soft_subgroup_ce
+  cancer_gate_mix_lambda: 0.25
+  cancer_gate_label_smoothing: 0.05
+  cancer_gate_raw5_aux_weight: 0.10
+  cancer_subtype_strategy: hybrid_hierarchical_ce
+  cancer_subtype_label_smoothing: 0.05
+  cancer_subtype_direct_fusion_weight: 0.60
+  cancer_subtype_p_vs_qs_loss_weight: 0.30
+  cancer_subtype_q_vs_s_loss_weight: 0.20
+  cancer_subtype_hierarchical_label_smoothing: 0.02
+  cancer_subtype_p_vs_qs_balanced: true
+  cancer_subtype_q_vs_s_balanced: false
+
+# Stage 2: train the Explicit branch and concatenate explicit information with the deep feature.
+explicit_fusion:
+  batch_size: 64
+  epochs: 200
+  lr: 0.0003
+  min_lr_factor: 0.10
+  weight_decay: 0.03
+  grad_clip_norm: 2.0
+  explicit_input_dropout: 0.15
+  explicit_hidden_dim: 96
+  explicit_hidden_dropout: 0.30
+  explicit_output_dim: 64
+  feature_clip: 10.0
+  temporal_bins: 16
+
+# Stage 3: refine the final Task3 decision while Task1 and Task2 remain fixed.
+task3_decision_adjustment:
+  batch_size: 64
+  epochs: 220
+  selection_start_epoch: 5
+  lr: 0.0003
+  min_lr_factor: 0.10
+  weight_decay: 0.03
+  grad_clip_norm: 2.0
+  hidden_dim: 32
+  dropout: 0.35
+  label_smoothing: 0.03
+  delta_l2: 0.01
+  consistency_weight: 0.25
+  grouped_dim_each: 16
+  unit_hidden_dim: 16
+  unit_output_dim: 8
+  context_dropout: 0.25
+
+output:
+  save_checkpoints: true
+  save_plots: true
+
+progress:
+  show_batch_progress: false
+  print_every_epoch: false
