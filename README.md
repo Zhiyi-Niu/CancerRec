@@ -3,7 +3,7 @@
 This repository contains code and figure source data for bladder cancer prediction.
 
 ## Demo
-<video src="./Supplementary Video 1.mp4" controls width="800"></video>
+<video src="./Supplementary_Video_1.mp4" controls width="800"></video>
 
 ## Project Overview
 Bladder cancer prediction pipeline based on ...
