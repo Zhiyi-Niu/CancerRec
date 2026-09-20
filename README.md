@@ -37,9 +37,9 @@ pip install -r requirements.txt
 
 `Cancer_Rec_Code/Cancer_Data/` is an empty placeholder folder\. Due to the large size of the original experimental data, it is not uploaded to this repository\.
 
-**Full dataset download \(Google Drive\):**
+**Full dataset download \(Baidu Drive\):**
 
-https://drive\.google\.com/xxxxxx
+[https://drive\.google\.com/xxxxxx](https://pan.baidu.com/s/1XsQMErixk3KECwjI1y88vQ?pwd=2026)
 
 After downloading, place all data into `Cancer_Rec_Code/Cancer_Data/` and modify the data path in`config.yaml` before running\.
 
