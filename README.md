@@ -34,7 +34,7 @@ cd Cancer_Rec_Code
 pip install -r requirements.txt
 ```
 
-## 📊 Running Dataset \(For Model Inference\)
+## 📊 Running Dataset
 
 `Cancer_Rec_Code/Cancer_Data/` is an empty placeholder folder\. Due to the large size of the original experimental data, it is not uploaded to this repository\.
 
