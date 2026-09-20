@@ -1,8 +1,5 @@
-# README\.md
+# CancerRec: Multiple Urological Cancer Recognition
 
-# CancerRec: Bladder Cancer Prediction
-
-This repository contains the complete source code, experimental data for paper figures, and demonstration video for the bladder cancer prediction project\.
 
 ## 📁 Project Structure
 
