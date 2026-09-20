@@ -123,5 +123,3 @@ Cancer_Rec_Code/
 ├── README.md
 └── VALIDATION_REPORT.txt
 ```
-
-All source-code comments, docstrings, file names, configuration keys, run messages, and result-directory names use the current project terminology only.
