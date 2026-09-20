@@ -16,7 +16,7 @@ The default five-class cohort is:
 The default source-data directory is:
 
 ```text
-/home/niuzhiyi/DataSet/Cancer_Data/Ori-Data/5-class/
+./Cancer_Data/Ori-Data/
 ├── P/
 ├── Q/
 ├── S/
@@ -56,7 +56,7 @@ Task1 and Task2 remain fixed. A lightweight residual decision-adjustment network
 The STMap generator reads the processed workbook in each sample directory and builds the Full STMap tensor. The default output path is:
 
 ```text
-/home/niuzhiyi/DataSet/Cancer_Data/Pro-STMap/Cancer_Rec_STMap/full/stmaps_full.npz
+./Cancer_Data/Pro-STMap/full/stmaps_full.npz
 ```
 
 The default input is the drift-corrected workbook and the `STMap_wide` sheet.
@@ -101,8 +101,8 @@ FOLD=1 SKIP_STMAP=1 bash run_main.sh
 Override paths:
 
 ```bash
-SOURCE_ROOT=/path/to/5-class \
-STMAP_ROOT=/path/to/Cancer_Rec_STMap \
+SOURCE_ROOT=/path/to/Ori-Data \
+STMAP_ROOT=/path/to/Pro-STMap \
 RESULT_ROOT=./results \
 bash run_main.sh
 ```
