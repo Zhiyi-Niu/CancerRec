@@ -4,7 +4,7 @@
 
 This repository contains the complete source code, experimental data for paper figures, and demonstration video for the bladder cancer prediction project\.
 
-## Project Structure
+## 📁 Project Structure
 
 ```Plain Text
 CancerRec/
@@ -24,7 +24,7 @@ CancerRec/
 └── Supplementary_Video_1.mp4         # Project demonstration video
 ```
 
-## Demo Video
+## 🎬 Demo Video
 
 [<video src="Supplementary_Video_1.mp4" controls width="300"></video>](https://github.com/user-attachments/assets/bb37f1da-4e99-4d7a-81ac-fd603a4ecaf7)
 
@@ -37,7 +37,7 @@ cd Cancer_Rec_Code
 pip install -r requirements.txt
 ```
 
-## Running Dataset \(For Model Inference\)
+## 📊 Running Dataset \(For Model Inference\)
 
 `Cancer_Rec_Code/Cancer_Data/` is an empty placeholder folder\. Due to the large size of the original experimental data, it is not uploaded to this repository\.
 
@@ -47,7 +47,7 @@ https://drive\.google\.com/xxxxxx
 
 After downloading, place all data into `Cancer_Rec_Code/Cancer_Data/` and modify the data path in`config.yaml` before running\.
 
-## Figure Source Data \(For Paper Plotting\)
+## 📈 Figure Source Data \(For Paper Plotting\)
 
 The `Fig Source Data/` folder stores **raw original data for reproducing all paper figures**\.
 
@@ -67,13 +67,6 @@ bash run_main.sh
 ```Plain Text
 cd Cancer_Rec_Code
 python run_cancer_recognition.py
-```
-
-### 3\. Model verification and evaluation
-
-```Plain Text
-cd Cancer_Rec_Code
-python verify_cancer_recognition.py
 ```
 
 
