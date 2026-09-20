@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 **Full dataset download \(Baidu Drive\):**
 
-[https://drive\.google\.com/xxxxxx](https://pan.baidu.com/s/1XsQMErixk3KECwjI1y88vQ?pwd=2026)
+[data link](https://pan.baidu.com/s/1XsQMErixk3KECwjI1y88vQ?pwd=2026)
 
 After downloading, place all data into `Cancer_Rec_Code/Cancer_Data/` and modify the data path in`config.yaml` before running\.
 
